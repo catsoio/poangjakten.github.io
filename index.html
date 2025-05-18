@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Poängjakten</title>
+  </head>
+  <body>
+    <div class="background">
+      <div class="gradient-blob"></div>
+      <div class="gradient-blob"></div>
+      <div class="gradient-blob"></div>
+      <div class="gradient-blob"></div>
+    </div>
+
+    <main>
+      <div class="headline-with-logo">
+        <img src="pj-logo.png" alt="Poängjakten logo" class="app-logo" />
+        <div class="headline-text">
+          <h1>Poängjakten</h1>
+          <p class="subtitle">där det rinner ✨ aura ✨</p>
+        </div>
+      </div>
+
+      <div class="card card-wide">
+        <div class="card-content">
+          <h2 id="scoreboard-heading">
+            <span class="live-dot"></span>
+            <span style="font-weight: normal" id="scoreboard-info">
+              <!-- detta fylls automatiskt med JS -->
+            </span>
+            <span>(uppdateras timmvis)</span>
+          </h2>
+
+          <div class="sponsor">
+            <span>Sponsras av</span>
+            <img src="https://www.foodora.com/wp-content/uploads/2024/12/Foodora_Logo_Cherry-Pink_RGB-1.png" alt="Foodora logo" class="sponsor-logo" />
+          </div>
+
+          <div class="scoreboard-meta">
+            <p>26 aug – 20 sep · vinnaren får 50% rabatt hos Foodora för hela klassen i en vecka! 🛍</p>
+          </div>
+
+          <ul class="leaderboard">
+            <li>
+              <span class="rank">🥇</span>
+              <div class="entry">
+                <span class="class-school">9B Tunaskolan</span>
+                <span class="city">Luleå</span>
+              </div>
+              <span class="points">0p</span>
+            </li>
+            <li>
+              <span class="rank">🥈</span>
+              <div class="entry">
+                <span class="class-school">3A Norra Real</span>
+                <span class="city">Stockholm</span>
+              </div>
+              <span class="points">0p</span>
+            </li>
+            <li>
+              <span class="rank">🥉</span>
+              <div class="entry">
+                <span class="class-school">8C Katedralskolan</span>
+                <span class="city">Lund</span>
+              </div>
+              <span class="points">0p</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cards-container">
+        <div class="card">
+          <div class="card-content">
+            <h2>men va!</h2>
+            <p>ja, så brukar elever reagera så fort dom ser en ny utmaning.</p>
+            <div class="card-footer">
+              <button class="card-button">rekommendera en utmaning</button>
+              <div class="card-icon">&rarr;</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <h2>ni glömde väl inte filma?</h2>
+            <p>bra. då är det bara att ladda upp. snälla, hur tror ni vi ska godkänna utan bevis?</p>
+            <div class="card-footer">
+              <button class="card-button">Hur det funkar</button>
+              <div class="card-icon">&rarr;</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <h2>9b toppar listan, ni då?</h2>
+            <p>pinsamt. varje poäng räknas. chilla får ni göra sen.</p>
+            <div class="card-footer">
+              <button class="card-button">visa ställningen</button>
+              <div class="card-icon">&rarr;</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <h2>säkerhet</h2>
+            <p>det må vara galet, men vi har nolltolerans för övergrepp, tvång och skitbeteende. vi håller det säkert tack.</p>
+            <div class="card-footer">
+              <button class="card-button">rapportera ett fall</button>
+              <div class="card-icon">&rarr;</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <h2>för vuxna med trust issues</h2>
+            <p>klassen bestämmer själv om de vill dela innehållet offentligt, hålla det privat eller bara med skolan och arrangörerna.</p>
+            <div class="card-footer">
+              <button class="card-button">Till skolor & föräldrar</button>
+              <div class="card-icon">&rarr;</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <h2>ni fixar vinsten – vi fixar hypen</h2>
+            <p>
+              vill ni nå Sveriges mest engagerade ungdomar? då får ni bjuda till. rabatter, prylar, upplevelser – bästa klassen ska känna att det var värt det.
+            </p>
+            <div class="card-footer">
+              <button class="card-button">Bli sponsor</button>
+              <div class="card-icon">&rarr;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+      const endDate = new Date('2025-05-25T23:59:59'); // ändra vid behov
+      const nextStartDate = new Date('2025-06-25');
+
+      function updateScoreboardInfo() {
+        const now = new Date();
+        const timeLeft = endDate - now;
+
+        let daysLeft = Math.ceil(timeLeft / (1000 * 60 * 60 * 24));
+        if (daysLeft < 0) daysLeft = 0;
+
+        const options = { day: 'numeric', month: 'long' };
+        const nextStart = nextStartDate.toLocaleDateString('sv-SE', options);
+
+        const infoText = daysLeft === 0 ? `finalen avgörs idag · nästa omgång: ${nextStart}` : `${daysLeft} ${daysLeft === 1 ? 'dag kvar' : 'dagar kvar'}`;
+
+        document.getElementById('scoreboard-info').textContent = infoText;
+      }
+
+      updateScoreboardInfo();
+    </script>
+  </body>
+</html>
